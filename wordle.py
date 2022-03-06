@@ -58,6 +58,24 @@ elif(len(unknown) == 4):
 					current[unknown[3]] = charlist[l]
 					permutation.append("".join(current))
 
+
 for guess in permutation:
 	if guess in clean_dictionary:
 		print(guess)
+		possible.append(guess)
+
+while(len(possible) > 1):
+	print("Eliminate letter: ")
+	eliminate = str(input())
+
+	removed = []
+	for word in possible:
+		for char in word:
+			if(char == eliminate and word not in removed):
+				removed.append(word)
+
+	possible = [word for word in possible if word not in removed]
+	for word in possible:
+		print(word)
+
+print("Answer: " + str(possible))
